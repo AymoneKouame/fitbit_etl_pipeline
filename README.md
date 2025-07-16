@@ -9,7 +9,7 @@ This ETL process assumes inputs are JSON Files loacated in a Google Cloud Bucket
  - 5 Load the final tables to Google Big Query (the final tables will be appended with each new batch of parsed data)
    
 ## Running the ET pipeline example.
-URIS = {
+```URIS = {
     'DAILY_ACTIVITY_SUMMARY': "gs://fake_bucket_id/{yyyy}/{mm}/{dd}/FITBIT/DAILY_ACTIVITY_SUMMARY/NA/ACTIVITY_MEASUREMENTS/*",
     'HEARTRATE': "gs://fake_bucket_id/{yyyy}/{mm}/{dd}/FITBIT/HEARTRATE/NA/VITAL_MEASUREMENTS/*",
     'DAILY_SLEEP_SUMMARY': "gs://fake_bucket_id/{yyyy}/{mm}/{dd}/FITBIT/DAILY_SLEEP_SUMMARY/NA/ACTIVITY_MEASUREMENTS/*",
@@ -19,7 +19,7 @@ URIS = {
 for MM in [str(m).zfill(2) for m in list(range(1,13))]:
     for cat in URIS: 
         upload_cat_year_month(cat = cat, yyyy = '2025', MM = MM, start_day= '00')
-    parse_to_table()
+    parse_to_table()```
 
 
 ## Results
