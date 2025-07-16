@@ -1,17 +1,14 @@
 # ETL Pipeline - Data Flow
-This ETL process assumes inputs are JSON Files loacated in a Google Cloud Bucket.
+This ETL process assumes inputs are JSON Files loacated in a Google Cloud Bucket. Files are delivered via a Google Bucket in the RDR. One file = data for one data type for one day for one participant in .json format. 
 
-## Data Ingest Summary
-Files are delivered via a Google Bucket in the RDR. One file = data for one data type for one day for one participant in .json format. 
-
-## ETL Summary
+## ETL Process Summary
  - 1 Import all necessary libraries
  - 2 Create a Federated table with 'CSV' external config based on the JSON file uris (location path in GC) (the federated table will be deleted/overwritten for each new batch of files)
  - 3 Batch load the federated table to a staging table, ensuring usage of pseudo column _FILE_NAME in GBQ SQL (the staging table will be deleted/overwritten for each new batch of files)
- - 4 Using GBQ parse the JSON file into tables following the project requirements 
- - 5. Load the final tables to Google Big Query (the final tables will be appended with each new batch of parsed data)
+ - 4 Using GBQ parse the JSON file into tables following the project requirements
+ - 5 Load the final tables to Google Big Query (the final tables will be appended with each new batch of parsed data)
    
-# Running the ET pipeline example.
+## Running the ET pipeline example.
 URIS = {
     'DAILY_ACTIVITY_SUMMARY': "gs://fake_bucket_id/{yyyy}/{mm}/{dd}/FITBIT/DAILY_ACTIVITY_SUMMARY/NA/ACTIVITY_MEASUREMENTS/*",
     'HEARTRATE': "gs://fake_bucket_id/{yyyy}/{mm}/{dd}/FITBIT/HEARTRATE/NA/VITAL_MEASUREMENTS/*",
@@ -25,10 +22,10 @@ for MM in [str(m).zfill(2) for m in list(range(1,13))]:
     parse_to_table()
 
 
-# Results
+## Results
 The following JSON file (**synthetic**) located in the Google bucket fake_bucket_id', will return two tables in Google Big Query:
 
-##Input
+####Input
 (filename = gs://fake_bucket_id/2025/09/02/FITBIT/DAILY_SLEEP_SUMMARY/NA/ACTIVITY_MEASUREMENTS/522222/2025-09-01-00.00.00_2025-09-01-23.59.59-cd9ec7a8af7f97byy3jy52a4d796cu83.JSON)
 
 {'sleep': [{'dateOfSleep': '2025-09-01',
@@ -103,7 +100,7 @@ The following JSON file (**synthetic**) located in the Google bucket fake_bucket
   'totalSleepRecords': 1,
   'totalTimeInBed': 500}}
 
-##Output
+#### Output
  - Table 1
   <img width="975" height="79" alt="image" src="https://github.com/user-attachments/assets/bf794e86-c539-48e8-a72a-0e8c7047d5cb" /> <img width="492" height="67" alt="image" src="https://github.com/user-attachments/assets/55643156-d4bd-4214-b74f-10da0c387aae" />
 
