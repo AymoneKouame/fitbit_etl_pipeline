@@ -29,7 +29,7 @@ for MM in [str(m).zfill(2) for m in list(range(1,13))]:
 ## Results
 The following JSON file (**synthetic**) located in the Google bucket fake_bucket_id', will return two tables in Google Big Query:
 
-####Input
+#### Input
 (filename = gs://fake_bucket_id/2025/09/02/FITBIT/DAILY_SLEEP_SUMMARY/NA/ACTIVITY_MEASUREMENTS/522222/2025-09-01-00.00.00_2025-09-01-23.59.59-cd9ec7a8af7f97byy3jy52a4d796cu83.JSON)
 
 {'sleep': [{'dateOfSleep': '2025-09-01',
