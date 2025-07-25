@@ -1,5 +1,5 @@
 # ETL Pipeline - Data Flow
-This ETL process assumes inputs are JSON Files loacated in a Google Cloud Bucket. Files are delivered via a Google Bucket in the RDR. One file = data for one data type for one day for one participant in .json format. 
+This ETL process assumes inputs are JSON Files loacated in a Google Cloud Bucket.
 
 ## ETL Process Summary
  - 1 Import all necessary libraries
